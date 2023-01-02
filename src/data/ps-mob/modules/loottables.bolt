@@ -1,0 +1,413 @@
+
+loot_table ./common { "pools": [{ "rolls": 1, "entries": [
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:potion",
+    "functions": [{
+        "function": "minecraft:set_nbt",
+        "tag": "{CustomPotionEffects:[{Id:10b,Amplifier:4b,Duration:240}]}" },
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Medkit",
+            "color": "light_purple",
+            "italic": false }},
+        {
+        "function": "minecraft:set_potion",
+          "id": "minecraft:strong_healing"
+        }]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:shield",
+    "functions": [{
+        "function": "minecraft:set_nbt",
+        "tag": "{BlockEntityTag:{Patterns:[{Pattern:\"gru\",Color:9},{Pattern:\"hhb\",Color:8},{Pattern:\"ms\",Color:7},{Pattern:\"bo\",Color:7}],Base:0}}" },
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:unbreaking": {
+                "min": 3,
+                "max": 5 },
+            "minecraft:protection": {
+                "min": 2,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Riot Shield",
+            "color": "dark_gray",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:turtle_helmet",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:depth_strider": {
+                "min": 1,
+                "max": 3 },
+            "minecraft:respiration": {
+                "min": 2,
+                "max": 4 },
+            "minecraft:aqua_affinity": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Diving Helmet",
+            "color": "aqua",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:stick",
+    "functions": [{
+        "function": "minecraft:set_name", "name": {
+            "text": "Knockback Stick",
+            "color": "gold",
+            "italic": false }},
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:knockback": {
+                "min": 2,
+                "max": 4
+            }}}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:iron_sword",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:sharpness": {
+                "min": 1,
+                "max": 5 },
+            "minecraft:smite": {
+                "min": 1,
+                "max": 5 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Apocalypse",
+            "color": "dark_red",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:golden_axe",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:looting": {
+                "min": 1,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Greed",
+            "color": "gold",
+            "bold": true,
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:chainmail_boots",
+    "functions": [{
+        "function": "minecraft:set_name", "name": {
+            "text": "Soul Stepper",
+            "color": "cyan",
+            "bold": true,
+            "italic": false }},
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:soul_speed": {
+                "min": 4,
+                "max": 5 },
+            "minecraft:unbreaking": 2 }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:leather_helmet",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:feather_falling": {
+                "min": 1,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Propeller Hat",
+            "color": "green",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:iron_boots",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:feather_falling": {
+                "min": 5,
+                "max": 6 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Long Fall Boots",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:golden_chestplate",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:thorns": {
+                "min": 1,
+                "max": 5 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Cactus",
+            "color": "dark_green",
+            "bold": true,
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:chainmail_chestplate",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:projectile_protection": {
+                "min": 4,
+                "max": 6 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Bulletproof Vest",
+            "color": "gray",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:wooden_sword",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:fire_aspect": {
+                "min": 1,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Match",
+            "color": "red",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:crossbow",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:piercing": {
+                "min": 1,
+                "max": 4 },
+            "minecraft:multishot": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Multiplier",
+            "color": "white",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:iron_horse_armor",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:protection": {
+                "min": 1,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Tough Horse Armor",
+            "color": "white",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:iron_axe",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:smite": {
+                "min": 2,
+                "max": 5 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Mjölnir",
+            "color": "yellow",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:stone_axe",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:efficiency": {
+                "min": 3,
+                "max": 6 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Primitive Chainsaw",
+            "color": "dark_gray",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:golden_pickaxe",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:efficiency": {
+                "min": 3,
+                "max": 6 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Primitive Mining Drill",
+            "color": "dark_gray",
+            "italic": false }}]},
+    ]}]}
+
+########################################################################################################################
+
+loot_table ./uncommon { "pools": [{ "rolls": 1, "entries": [
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:golden_chestplate",
+    "functions": [{
+        "function": "minecraft:set_name", "name": {
+            "text": "S.W.A.T. West",
+            "color": "dark_gray",
+            "italic": false }},
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:binding_curse": 1,
+            "minecraft:protection": {
+                "min": 4,
+                "max": 7
+            }}}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:golden_leggings",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:protection": {
+                "min": 4,
+                "max": 7 },
+            "minecraft:binding_curse": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "S.W.A.T. Pants",
+            "color": "dark_gray",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:diamond_boots",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:frost_walker": {
+                "min": 1,
+                "max": 2 },
+            "minecraft:depth_strider": {
+                "min": 1,
+                "max": 3 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Winter Flippers",
+            "color": "blue",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:netherite_hoe",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:sharpness": {
+                "min": 1,
+                "max": 5 },
+            "minecraft:vanishing_curse": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Reaper's Scythe",
+            "color": "black",
+            "bold": true,
+            "italic": false }}]},
+    ]}]}
+
+########################################################################################################################
+
+loot_table ./rare { "pools": [{ "rolls": 1, "entries": [
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:trident",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:riptide": {
+                "min": 3,
+                "max": 5 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Ripper",
+            "color": "dark_aqua",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:totem_of_undying",
+    "functions": [{
+        "function": "minecraft:set_attributes", "modifiers": [{
+            "attribute": "minecraft:generic.luck",
+            "name": "ps-mob.lucky_charm",
+            "amount": 1,
+            "operation": "addition",
+            "id": "42600878-6e02-419a-97b4-695e8e4e3e14",
+            "slot": "mainhand" }]},
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:protection": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Lucky Charm",
+            "color": "dark_green",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:trident",
+    "functions": [{
+        "function": "minecraft:set_name", "name": {
+            "text": "Poseidon's Trident",
+            "color": "dark_aqua",
+            "italic": false }},
+        {
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:sharpness": {
+                "min": 2,
+                "max": 5
+            }}}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:bow",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:mending": 1,
+            "minecraft:infinity": 1 }},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Robins Bow",
+            "color": "dark_purple",
+            "italic": false }}]},
+    ]}]}
+
+########################################################################################################################
+
+loot_table ./legendary { "pools": [{ "rolls": 1, "entries": [
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:elytra",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:protection": {
+                "min": 2,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Plated Elytra",
+            "color": "dark_gray",
+            "italic": false }}]},
+    {
+    "type": "minecraft:item",
+    "name": "minecraft:diamond_chestplate",
+    "functions": [{
+        "function": "minecraft:set_enchantments", "enchantments": {
+            "minecraft:protection": {
+                "min": 2,
+                "max": 4 },
+            "minecraft:blast_protection": {
+                "min": 2,
+                "max": 4 },
+            "minecraft:projectile_protection": {
+                "min": 2,
+                "max": 4 },
+            "minecraft:fire_protection": {
+                "min": 2,
+                "max": 4 }}},
+        {
+        "function": "minecraft:set_name", "name": {
+            "text": "Immortal",
+            "color": "gold",
+            "italic": false }}]},
+    ]}]}
+
