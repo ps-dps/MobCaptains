@@ -1,3 +1,84 @@
 
-function ./hello_world:
-    say HI MOOOOOM :3
+import ./entitytags as entityTags
+import ./chances as chances
+from bolt_expressions import Scoreboard, Data
+
+mainScore = ctx.inject(Scoreboard).objective("ps-mob")
+
+append function_tag load:load {"values":["ps-mob:load"]}
+function ./load:
+    scoreboard objectives add ps-mob dummy
+
+    schedule function ./tick 1t replace:
+        schedule function ./tick 1t replace
+
+    schedule function ./register_new 1s replace:
+        schedule function ./register_new 1s replace
+        if score .cool_down ps-mob matches 1..:
+            mainScore[".cool_down"] -= 1
+        unless score .cool_down ps-mob matches 1..
+            as @e[type=#ps-mob:captains,tag=!ps-mob,tag=!smithed.entity]
+            run function ./captain_check
+        tag @e[type=#ps-mob:captains,tag=!ps-mob,tag=!smithed.entity] add ps-mob
+
+function ./captain_check:
+    unless score .cool_down ps-mob matches 1..:
+        mainScore[".faliure"] += 1
+
+    mainScore["#try"].reset()
+    unless score .cool_down ps-mob matches 1..
+        if predicate ./over_time:
+            mainScore["#try"] = 1
+    if score #try ps-mob matches 1
+        unless score .cool_down ps-mob matches 1..
+        if predicate ./common
+            run function ./convert/common:
+                tag @s add ps-mob.common
+                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.5 multiply
+                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 2 add
+                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.15 multiply
+                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 0.7 multiply
+                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
+                function ./convert/captain
+    if score #try ps-mob matches 1
+        unless score .cool_down ps-mob matches 1..
+        if predicate ./uncommon
+            run function ./convert/uncommon:
+                tag @s add ps-mob.uncommon
+                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.9 multiply
+                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 4 add
+                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.25 multiply
+                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 1.2 multiply
+                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
+                function ./convert/captain
+    if score #try ps-mob matches 1
+        unless score .cool_down ps-mob matches 1..
+        if predicate ./rare
+            run function ./convert/rare:
+                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 1.8 multiply
+                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 8 add
+                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.4 multiply
+                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 2.1 multiply
+                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
+                tag @s add ps-mob.rare
+                function ./convert/captain
+    if score #try ps-mob matches 1
+        unless score .cool_down ps-mob matches 1..
+        if predicate ./legendary
+            run function ./convert/legendary:
+                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 2.7 multiply
+                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 15 add
+                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.8 multiply
+                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 3 multiply
+                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
+                tag @s add ps-mob.legendary
+                function ./convert/captain
+    
+function ./convert/captain:
+    tag @s add smithed.entity
+    tag @s add ps-mob.captain
+    mainScore["#try"].reset()
+    mainScore[".faliure"].reset()
+    mainScore[".cool_down"] = 50
+    store result entity @s Health float 1:
+        attribute @s minecraft:generic.max_health get
