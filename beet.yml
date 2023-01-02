@@ -1,0 +1,19 @@
+name: MobCaptains
+author: PuckiSilver
+version: v2.0.0
+output: build
+require:
+  - bolt
+
+data_pack:
+  load:
+    - libs/lantern-load.zip
+    - src
+  name: MobCaptains
+  description: Rare and strong mobs with custom loot
+
+pipeline:
+  - mecha
+meta:
+  bolt:
+    entrypoint: ps-mob:main
