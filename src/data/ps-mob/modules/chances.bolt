@@ -1,0 +1,32 @@
+
+predicate ./over_time {
+    "condition": "minecraft:inverted", "term": {
+        "condition": "minecraft:value_check", "value": {
+            "min": 0,
+            "max": { "type": "minecraft:score", "target": {
+                "type": "minecraft:fixed",
+                "name": ".faliure" },
+                "score": "ps-mob",
+                "scale": 5 }},
+        "range": 0 }
+    }
+
+predicate ./common {
+    "condition": "minecraft:random_chance",
+    "chance": 0.04
+}
+
+predicate ./uncommon {
+    "condition": "minecraft:random_chance",
+    "chance": 0.03
+}
+
+predicate ./rare {
+    "condition": "minecraft:random_chance",
+    "chance": 0.01
+}
+
+predicate ./legendary {
+    "condition": "minecraft:random_chance",
+    "chance": 0.005
+}
