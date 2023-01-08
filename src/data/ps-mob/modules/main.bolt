@@ -4,9 +4,12 @@ import ./chances as chances
 import ./loottables as lootTables
 from ./particles import circle
 from bolt_expressions import Scoreboard, Data
+from allay import Parser
+from ast import literal_eval
 
 mainScore = ctx.inject(Scoreboard).objective("ps-mob")
 config = ctx.inject(Scoreboard).objective("ps-mob.config")
+p = Parser()
 
 append function_tag load:load {"values":["ps-mob:load"]}
 function ./load:
@@ -18,11 +21,15 @@ function ./load:
             config[f'{name}'] = value
 
     setBaseConfig(".cool_down", 60)
-    setBaseConfig(".spawn_chance", 20)
-    setBaseConfig(".weight_common", 40)
+    setBaseConfig(".spawn_chance", 10)
+
+    setBaseConfig(".weight_common", 55)
     setBaseConfig(".weight_uncommon", 30)
-    setBaseConfig(".weight_rare", 10)
-    setBaseConfig(".weight_legendary", 5)
+    setBaseConfig(".weight_rare", 9)
+    setBaseConfig(".weight_legendary", 1)
+
+    setBaseConfig(".notify_on_spawn", 2)
+    setBaseConfig(".beam_on_spawn", 1)
 
     unless score #random ps-mob = #random ps-mob store result score #random ps-mob run seed
     unless score #rand_a ps-mob = #rand_a ps-mob:
@@ -83,6 +90,9 @@ function ./captain_check:
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
             tag @s add ps-mob.common
             data modify entity @s DeathLootTable set value "ps-mob:captain/common"
+            if score .notify_on_spawn ps-mob.config matches 4.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=gray)[ A ](color=white)[common Mob Captain](color=gray)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 4.. at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
+            if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 1 1 1 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_common"]
@@ -98,6 +108,9 @@ function ./captain_check:
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
             tag @s add ps-mob.uncommon
             data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
+            if score .notify_on_spawn ps-mob.config matches 3.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#00FF00)[ An ](color=white)[uncommon Mob Captain](color=#00FF00)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 3.. at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
+            if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 0 1 0 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_uncommon"]
@@ -113,6 +126,9 @@ function ./captain_check:
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
             tag @s add ps-mob.rare
             data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
+            if score .notify_on_spawn ps-mob.config matches 2.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#B400FF)[ A ](color=white)[rare Mob Captain](color=#B400FF)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 2.. at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
+            if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 0.7 0 1 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_rare"]
@@ -128,6 +144,9 @@ function ./captain_check:
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
             tag @s add ps-mob.legendary
             data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
+            if score .notify_on_spawn ps-mob.config matches 1.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=red)[ A ](color=white)[l](color=#ff5151)[e](color=#ffb74d)[g](color=#ffff87)[e](color=#51ff51)[n](color=#4d4dff)[d](color=#9933cc)[a](color=#cc66cc)[r](color=#cc00cc)[y](color=#ff87ff)[ Mob Captain](color=red)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 1.. at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
+            if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 10 10 10 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
 
 function ./convert/captain:
