@@ -2,7 +2,7 @@
 import ./entitytags as entityTags
 import ./chances as chances
 import ./loottables as lootTables
-import ./particles as particles
+from ./particles import circle
 from bolt_expressions import Scoreboard, Data
 
 mainScore = ctx.inject(Scoreboard).objective("ps-mob")
@@ -30,8 +30,24 @@ function ./load:
     unless score #rand_c ps-mob = #rand_c ps-mob:
         mainScore["#rand_c"] = 1234567
 
-    schedule function ./tick 5t replace:
-        schedule function ./tick 5t replace
+    schedule function ./tick 2t replace:
+        schedule function ./tick 2t replace
+        as @e[type=#ps-mob:captains,tag=ps-mob.captain] at @s run function ./particles/main:
+            if entity @s[tag=ps-mob.common] run function ./particles/common:
+                circle(1, 15, "dust 1 1 1 1", offset=(0,0.1,0))
+                circle(2, 30, "dust 1 1 1 1", offset=(0,0.1,0))
+            if entity @s[tag=ps-mob.uncommon] run function ./particles/uncommon:
+                circle(1, 15, "dust 0 1 0 1", offset=(0,0.1,0))
+                circle(2, 30, "dust 0 1 0 1", offset=(0,0.1,0))
+            if entity @s[tag=ps-mob.rare] run function ./particles/rare:
+                circle(1, 15, "dust 0.7 0 1 1", offset=(0,0.1,0))
+                circle(2, 30, "dust 0.7 0 1 1", offset=(0,0.1,0))
+            if entity @s[tag=ps-mob.legendary] run function ./particles/legendary:
+                circle(1, 15, "dust 10 10 10 1", offset=(0,0.1,0))
+                circle(2, 30, "dust 10 10 10 1", offset=(0,0.1,0))
+            anchored eyes positioned ^ ^ ^ run function ./particles/head:
+                circle(0.25, 5, "soul_fire_flame", "out", 0.03, movement_offset=(0,2,0), offset=(0,0.8,0))
+                circle(0.25, 5, "flame", "out", 0.13, offset=(0,0.8,0))
 
     schedule function ./register_new 1s replace:
         schedule function ./register_new 1s replace
@@ -60,12 +76,13 @@ function ./captain_check:
         unless score .cool_down ps-mob matches 1..
         if score .rand% ps-mob <= .weight_common ps-mob.config
         run function ./convert/common:
-            tag @s add ps-mob.common
             attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.5 multiply
             attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 2 add
             attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.15 multiply
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 0.7 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
+            tag @s add ps-mob.common
+            data modify entity @s DeathLootTable set value "ps-mob:captain/common"
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_common"]
@@ -74,12 +91,13 @@ function ./captain_check:
         unless score .cool_down ps-mob matches 1..
         if predicate ./weighted
         run function ./convert/uncommon:
-            tag @s add ps-mob.uncommon
             attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.9 multiply
             attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 4 add
             attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.25 multiply
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 1.2 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
+            tag @s add ps-mob.uncommon
+            data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_uncommon"]
@@ -94,6 +112,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 2.1 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
             tag @s add ps-mob.rare
+            data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
             function ./convert/captain
     if score #try ps-mob matches 1:
         mainScore[".rand%"] -= config[".weight_rare"]
@@ -108,6 +127,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 3 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
             tag @s add ps-mob.legendary
+            data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
             function ./convert/captain
 
 function ./convert/captain:
