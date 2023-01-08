@@ -1,0 +1,20 @@
+
+import math
+import numpy
+
+def circle(radius, points, particle="dust 1 0 0 0.5", movement=(0, 0, 0), speed=0, offset=(0, 0, 0), movement_offset=(0, 0, 0), mode="force"):
+    if type(movement) == tuple:
+        move = f'{movement[0]} {movement[1]} {movement[2]}'
+    else:
+        move = "0 0 0"
+    moveOut = movement == "out"
+    moveIn = movement == "in"
+
+    for a in numpy.arange(0, 2*math.pi, (2*math.pi)/points):
+        x = radius * math.cos(a)
+        y = radius * math.sin(a)
+        if moveOut:
+            move = f'{round(x, 5) + movement_offset[0]} {movement_offset[1]} {round(y, 5) + movement_offset[2]}'
+        elif moveIn:
+            move = f'-{round(x, 5)} 0 -{round(y, 5)}'
+        particle f'{particle} ~{round(x, 5) + offset[0]} ~{offset[1]} ~{round(y, 5) + offset[2]} {move} {speed} 0 {mode}'
