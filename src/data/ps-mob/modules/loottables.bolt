@@ -33,76 +33,92 @@ loot_table ./captain/common { "pools": [{ "rolls": 1, "entries": [
     {
         "type": "minecraft:loot_table",
         "weight": 70,
-        "name": "ps-mob:base/common" },
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 12,
-        "name": "ps-mob:base/uncommon" },
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 6,
-        "name": "ps-mob:base/rare" },
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 2,
-        "name": "ps-mob:base/legendary" },
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     ]}]}
 
 loot_table ./captain/uncommon { "pools": [{ "rolls": 1, "entries": [
     {
         "type": "minecraft:loot_table",
         "weight": 12,
-        "name": "ps-mob:base/common" },
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight":70,
-        "name": "ps-mob:base/uncommon" },
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 6,
-        "name": "ps-mob:base/rare" },
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 2,
-        "name": "ps-mob:base/legendary" },
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     ]}]}
 
 loot_table ./captain/rare { "pools": [{ "rolls": 1, "entries": [
     {
         "type": "minecraft:loot_table",
         "weight": 6,
-        "name": "ps-mob:base/common" },
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 12,
-        "name": "ps-mob:base/uncommon" },
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 70,
-        "name": "ps-mob:base/rare" },
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 2,
-        "name": "ps-mob:base/legendary" },
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     ]}]}
 
 loot_table ./captain/legendary { "pools": [{ "rolls": 1, "entries": [
     {
         "type": "minecraft:loot_table",
         "weight": 2,
-        "name": "ps-mob:base/common" },
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 6,
-        "name": "ps-mob:base/uncommon" },
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 12,
-        "name": "ps-mob:base/rare" },
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     {
         "type": "minecraft:loot_table",
         "weight": 70,
-        "name": "ps-mob:base/legendary" },
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     ]}]}
 
 #######################################################################################
@@ -239,8 +255,13 @@ loot_table ./base/rare {
         ]),
 
         newItem('bow', [
-        setName("Robins Bow", "dark_purple"),
-        setEnchantments([("mending", 1),("infinity", 1)]),
+        setName("Cornucopia", "gold"),
+        setEnchantments([("looting", 1, 3)])
+        ]),
+
+        newItem('totem_of_undying', [
+        setName("YOLO", "dark_red"),
+        setEnchantments([("vanishing_curse", 1)])
         ]),
     ]}]
 }
@@ -255,5 +276,10 @@ loot_table ./base/legendary {
         newItem('diamond_chestplate', [
         setName("Immortal", "gold"),
         setEnchantments([("protection", 2, 4),("blast_protection", 2, 4),("projectile_protection", 2, 4),("fire_protection", 2, 4)]),
+        ]),
+
+        newItem('bow', [
+        setName("Robins Bow", "dark_purple"),
+        setEnchantments([("mending", 1),("infinity", 1)]),
         ]),
     ]}]}
