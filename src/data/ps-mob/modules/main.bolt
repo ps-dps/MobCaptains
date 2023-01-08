@@ -1,16 +1,37 @@
 
 import ./entitytags as entityTags
 import ./chances as chances
+import ./loottables as lootTables
+import ./particles as particles
 from bolt_expressions import Scoreboard, Data
 
 mainScore = ctx.inject(Scoreboard).objective("ps-mob")
+config = ctx.inject(Scoreboard).objective("ps-mob.config")
 
 append function_tag load:load {"values":["ps-mob:load"]}
 function ./load:
     scoreboard objectives add ps-mob dummy
+    scoreboard objectives add ps-mob.config dummy [{"text":"M","color":"white"},{"text":"o","color":"#FF0000"},{"text":"b C","color":"white"},{"text":"a","color":"#FF0000"},{"text":"ptains ","color":"white"},{"text":"Config","color":"gold"}]
 
-    schedule function ./tick 1t replace:
-        schedule function ./tick 1t replace
+    def setBaseConfig(name, value):
+        unless score f'{name}' ps-mob.config = f'{name}' ps-mob.config:
+            config[f'{name}'] = value
+
+    setBaseConfig(".cool_down", 60)
+    setBaseConfig(".spawn_chance", 20)
+    setBaseConfig(".weight_common", 40)
+    setBaseConfig(".weight_uncommon", 30)
+    setBaseConfig(".weight_rare", 10)
+    setBaseConfig(".weight_legendary", 5)
+
+    unless score #random ps-mob = #random ps-mob store result score #random ps-mob run seed
+    unless score #rand_a ps-mob = #rand_a ps-mob:
+        mainScore["#rand_a"] = 1234567
+    unless score #rand_c ps-mob = #rand_c ps-mob:
+        mainScore["#rand_c"] = 1234567
+
+    schedule function ./tick 5t replace:
+        schedule function ./tick 5t replace
 
     schedule function ./register_new 1s replace:
         schedule function ./register_new 1s replace
@@ -27,58 +48,77 @@ function ./captain_check:
 
     mainScore["#try"].reset()
     unless score .cool_down ps-mob matches 1..
-        if predicate ./over_time:
+        if predicate ./should_spawn
+        if predicate ./per_failure:
             mainScore["#try"] = 1
+
+    mainScore[".weight_max"] = config[".weight_common"] + config[".weight_uncommon"] + config[".weight_rare"] + config[".weight_legendary"]
+    function ./next_random
+    mainScore[".rand%"] = (mainScore["#random"] % mainScore[".weight_max"]) + 1
+
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./common
-            run function ./convert/common:
-                tag @s add ps-mob.common
-                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.5 multiply
-                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 2 add
-                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.15 multiply
-                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 0.7 multiply
-                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
-                function ./convert/captain
+        if score .rand% ps-mob <= .weight_common ps-mob.config
+        run function ./convert/common:
+            tag @s add ps-mob.common
+            attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.5 multiply
+            attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 2 add
+            attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.15 multiply
+            attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 0.7 multiply
+            attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
+            function ./convert/captain
+    if score #try ps-mob matches 1:
+        mainScore[".rand%"] -= config[".weight_common"]
+
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./uncommon
-            run function ./convert/uncommon:
-                tag @s add ps-mob.uncommon
-                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.9 multiply
-                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 4 add
-                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.25 multiply
-                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 1.2 multiply
-                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
-                function ./convert/captain
+        if predicate ./weighted
+        run function ./convert/uncommon:
+            tag @s add ps-mob.uncommon
+            attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.9 multiply
+            attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 4 add
+            attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.25 multiply
+            attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 1.2 multiply
+            attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
+            function ./convert/captain
+    if score #try ps-mob matches 1:
+        mainScore[".rand%"] -= config[".weight_uncommon"]
+
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./rare
-            run function ./convert/rare:
-                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 1.8 multiply
-                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 8 add
-                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.4 multiply
-                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 2.1 multiply
-                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
-                tag @s add ps-mob.rare
-                function ./convert/captain
+        if predicate ./weighted
+        run function ./convert/rare:
+            attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 1.8 multiply
+            attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 8 add
+            attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.4 multiply
+            attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 2.1 multiply
+            attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
+            tag @s add ps-mob.rare
+            function ./convert/captain
+    if score #try ps-mob matches 1:
+        mainScore[".rand%"] -= config[".weight_rare"]
+
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./legendary
-            run function ./convert/legendary:
-                attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 2.7 multiply
-                attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 15 add
-                attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.8 multiply
-                attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 3 multiply
-                attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
-                tag @s add ps-mob.legendary
-                function ./convert/captain
-    
+        if predicate ./weighted
+        run function ./convert/legendary:
+            attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 2.7 multiply
+            attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 15 add
+            attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 ps-mob.movement_speed 0.8 multiply
+            attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 3 multiply
+            attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
+            tag @s add ps-mob.legendary
+            function ./convert/captain
+
 function ./convert/captain:
     tag @s add smithed.entity
     tag @s add ps-mob.captain
     mainScore["#try"].reset()
     mainScore[".faliure"].reset()
-    mainScore[".cool_down"] = 50
+    mainScore[".cool_down"] = config[".cool_down"]
     store result entity @s Health float 1:
         attribute @s minecraft:generic.max_health get
+
+function ./next_random:
+    mainScore["#random"] *= mainScore["#rand_a"]
+    mainScore["#random"] += mainScore["#rand_c"]
