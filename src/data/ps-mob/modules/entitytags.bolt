@@ -1,5 +1,5 @@
 
-entity_type_tag ./size/small { ## r = 1 block
+entity_type_tag ./captains {
     "values":[
         { "id": "#minecraft:skeletons", "required": false },
 
@@ -26,10 +26,7 @@ entity_type_tag ./size/small { ## r = 1 block
         { "id": "minecraft:zombified_piglin", "required": false },
         { "id": "minecraft:piglin", "required": false },
         { "id": "minecraft:piglin_brute", "required": false },
-    ]}
 
-entity_type_tag ./size/large { ## r = 2 blocks
-    "values":[
         { "id": "minecraft:magma_cube", "required": false },
         { "id": "minecraft:slime", "required": false },
         
@@ -37,10 +34,4 @@ entity_type_tag ./size/large { ## r = 2 blocks
         { "id": "minecraft:zoglin", "required": false },
 
         { "id": "minecraft:ravager", "required": false },
-    ]}
-
-entity_type_tag ./captains {
-    "values": [
-        "#ps-mob:size/small",
-        "#ps-mob:size/large",
     ]}
