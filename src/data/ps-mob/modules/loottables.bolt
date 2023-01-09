@@ -279,7 +279,7 @@ loot_table ./base/legendary {
         ]),
 
         newItem('bow', [
-        setName("Robins Bow", "dark_purple"),
+        setName("Robin's Bow", "dark_purple"),
         setEnchantments([("mending", 1),("infinity", 1)]),
         ]),
     ]}]}
