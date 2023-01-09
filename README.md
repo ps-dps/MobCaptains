@@ -10,7 +10,7 @@ Mob Captains of **common, uncommon, rare and legendary difficulty** will spawn i
 
 <p><details>
 <summary>
-The Mob Captains are <b>buffed based on their rarity</b>
+The Mob Captains are <b>buffed based on their rarity</b>!
 </summary>
 <b>Common</b><br>
 +50% Max Health<br>
