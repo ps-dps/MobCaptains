@@ -10,22 +10,6 @@ predicate ./per_failure {
         "range": 0 }
     }
 
-predicate ./weighted {
-    "condition": "minecraft:value_check",
-    "value": {
-        "min": 1,
-        "max": { "type": "minecraft:score", "target": {
-            "type": "minecraft:fixed",
-            "name": ".weight_max" },
-            "score": "ps-mob" }},
-    "range": {
-        "min": 1,
-        "max": { "type": "minecraft:score", "target": {
-            "type": "minecraft:fixed",
-            "name": ".weight" },
-            "score": "ps-mob" }}
-    }
-
 predicate ./should_spawn {
     "condition": "minecraft:value_check", "value": {
         "min": 1,

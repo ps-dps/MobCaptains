@@ -23,10 +23,10 @@ function ./load:
     setBaseConfig(".cool_down", 60)
     setBaseConfig(".spawn_chance", 10)
 
-    setBaseConfig(".weight_common", 55)
+    setBaseConfig(".weight_common", 50)
     setBaseConfig(".weight_uncommon", 30)
     setBaseConfig(".weight_rare", 9)
-    setBaseConfig(".weight_legendary", 1)
+    setBaseConfig(".weight_legendary", 2)
 
     setBaseConfig(".notify_on_spawn", 2)
     setBaseConfig(".beam_on_spawn", 1)
@@ -99,7 +99,7 @@ function ./captain_check:
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./weighted
+        if score .rand% ps-mob <= .weight_uncommon ps-mob.config
         run function ./convert/uncommon:
             attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 0.9 multiply
             attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 4 add
@@ -117,7 +117,7 @@ function ./captain_check:
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./weighted
+        if score .rand% ps-mob <= .weight_rare ps-mob.config
         run function ./convert/rare:
             attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 1.8 multiply
             attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 8 add
@@ -135,7 +135,7 @@ function ./captain_check:
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
-        if predicate ./weighted
+        if score .rand% ps-mob <= .weight_common ps-mob.config
         run function ./convert/legendary:
             attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 ps-mob.max_health 2.7 multiply
             attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 ps-mob.armor 15 add
