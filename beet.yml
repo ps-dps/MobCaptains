@@ -1,6 +1,6 @@
 name: MobCaptains
 author: PuckiSilver
-version: v2.0.0
+version: v2.0.1
 output: build
 require:
   - bolt
@@ -14,6 +14,8 @@ data_pack:
 
 pipeline:
   - mecha
+  - plugins.credit
 meta:
   bolt:
     entrypoint: ps-mob:main
+  credit: [ps-mob]
