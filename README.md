@@ -38,7 +38,7 @@ The Mob Captains are <b>buffed based on their rarity</b>!
 +100% Knockback Resistance<br>
 </details></p>
 
-These Mob Captains will **drop items that are enchanted** in a way that **not possible in the vanilla game**.
+These Mob Captains will **drop items that are enchanted** in a way that is **not possible in the vanilla game**.
 
 You can **easily configure** the data pack to your liking.
 
@@ -99,7 +99,7 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
 </table>
 </details></p>
 
-To adjust the loot tables' weight, just modify the values at `/data/ps-mob/loot_tables/captains/<rarity>.json`.
+To adjust the loot tables' weights, just modify the values at `/data/ps-mob/loot_tables/captains/<rarity>.json`.
 
 If you want to alter the items themselves, edit the loot tables at `/data/ps-mob/loot_tables/base/<rarity>.json`.
 
