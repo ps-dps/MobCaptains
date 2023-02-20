@@ -108,6 +108,7 @@ If you want to alter the items themselves, edit the loot tables at `/data/ps-mob
 ## **Planned Features**
 - Add even **more items** to the loot tables
 - Mob Captains can have different **abilities**, inspired by Atomic Stryker's Infernal Mobs' enchantments
+- Option to see Mob Captains through walls with a **glowing outline**
 
 ---
 Check me out on other platforms:
