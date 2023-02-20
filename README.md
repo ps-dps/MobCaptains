@@ -47,7 +47,7 @@ This data pack is inspired by **Atomic Stryker's** legendary [**Infernal Mobs**]
 ## **Configure the Pack**
 Many aspects of this data pack can be configured by simply changing some score values.
 
-You can access a chat based configuration menu while ingame by running the command `/function ps-mob:config` if you have operator permissions.
+You can access a **chat based configuration menu** while **ingame** by running the command `/function ps-mob:config` if you have operator permissions.
 
 <p><details><summary>
 Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your desired values!
@@ -107,7 +107,6 @@ If you want to alter the items themselves, edit the loot tables at `/data/ps-mob
 
 ## **Planned Features**
 - Add even **more items** to the loot tables
-- A chat based **config menu**
 - Mob Captains can have different **abilities**, inspired by Atomic Stryker's Infernal Mobs' enchantments
 
 ---
