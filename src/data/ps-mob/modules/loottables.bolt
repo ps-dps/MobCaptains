@@ -186,7 +186,7 @@ loot_table ./base/common {
 loot_table ./base/uncommon {
     "pools": [{ "rolls": 1, "entries": [
         newItem('golden_chestplate', [
-        setName("S.W.A.T. West", "dark_gray"),
+        setName("S.W.A.T. Vest", "dark_gray"),
         setEnchantments([("binding_curse", 1),("protection", 4, 7)])
         ]),
 
