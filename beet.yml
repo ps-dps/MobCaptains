@@ -1,6 +1,6 @@
 name: MobCaptains
 author: PuckiSilver
-version: v2.0.2
+version: v2.1.0
 output: build
 require:
   - bolt
