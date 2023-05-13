@@ -30,7 +30,17 @@ function ./load:
 
     setBaseConfig(".notify_on_spawn", 2)
     setBaseConfig(".notify_with_sound", 1)
+    setBaseConfig(".should_glow", 0)
     setBaseConfig(".beam_on_spawn", 1)
+
+    team add ps-mob.common
+    team modify ps-mob.common color gray
+    team add ps-mob.uncommon
+    team modify ps-mob.uncommon color green
+    team add ps-mob.rare
+    team modify ps-mob.rare color dark_purple
+    team add ps-mob.legendary
+    team modify ps-mob.legendary color gold
 
     unless score #random ps-mob = #random ps-mob store result score #random ps-mob run seed
     unless score #rand_a ps-mob = #rand_a ps-mob:
@@ -90,6 +100,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 0.7 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.03 add
             tag @s add ps-mob.common
+            team join ps-mob.common @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/common"
             if score .notify_on_spawn ps-mob.config matches 4.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=gray)[ A ](color=white)[common Mob Captain](color=gray)[ has spawned nearby!](color=white)"))
             if score .notify_on_spawn ps-mob.config matches 4.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
@@ -108,6 +119,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 1.2 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.1 add
             tag @s add ps-mob.uncommon
+            team join ps-mob.uncommon @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
             if score .notify_on_spawn ps-mob.config matches 3.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#00FF00)[ An ](color=white)[uncommon Mob Captain](color=#00FF00)[ has spawned nearby!](color=white)"))
             if score .notify_on_spawn ps-mob.config matches 3.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
@@ -126,6 +138,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 2.1 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 0.5 add
             tag @s add ps-mob.rare
+            team join ps-mob.rare @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
             if score .notify_on_spawn ps-mob.config matches 2.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#B400FF)[ A ](color=white)[rare Mob Captain](color=#B400FF)[ has spawned nearby!](color=white)"))
             if score .notify_on_spawn ps-mob.config matches 2.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
@@ -144,6 +157,7 @@ function ./captain_check:
             attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 ps-mob.attack_damage 3 multiply
             attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 ps-mob.knockback_resistance 1 add
             tag @s add ps-mob.legendary
+            team join ps-mob.legendary @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
             if score .notify_on_spawn ps-mob.config matches 1.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=red)[ A ](color=white)[l](color=#ff5151)[e](color=#ffb74d)[g](color=#ffff87)[e](color=#51ff51)[n](color=#4d4dff)[d](color=#9933cc)[a](color=#cc66cc)[r](color=#cc00cc)[y](color=#ff87ff)[ Mob Captain](color=red)[ has spawned nearby!](color=white)"))
             if score .notify_on_spawn ps-mob.config matches 1.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
@@ -151,6 +165,7 @@ function ./captain_check:
             function ./convert/captain
 
 function ./convert/captain:
+    if score .should_glow ps-mob.config matches 1 effect give @s glowing 1000000 0 true
     tag @s add smithed.entity
     tag @s add ps-mob.captain
     mainScore["#try"].reset()
@@ -222,6 +237,20 @@ function ./config:
         { "text": " " },
         { "score": {
                 "name": ".notify_with_sound",
+                "objective": "ps-mob.config" },
+            "color": "red" },
+        { "text": "\n" },
+        { "text": "Should glow ",
+            "clickEvent": {
+                "action": "suggest_command",
+                "value": "/scoreboard players set .should_glow ps-mob.config " },
+            "hoverEvent": {
+                "action": "show_text",
+                "contents": "If a Mob Captain's silhouette should show through blocks, with 0 being disabled and 1 being enabled" }},
+        { "text": "[0 | 1]", "color": "gray" },
+        { "text": " " },
+        { "score": {
+                "name": ".should_glow",
                 "objective": "ps-mob.config" },
             "color": "red" },
         { "text": "\n" },
