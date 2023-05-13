@@ -203,7 +203,7 @@ function ./config:
                 "value": "/scoreboard players set .notify_on_spawn ps-mob.config " },
             "hoverEvent": {
                 "action": "show_text",
-                "contents": "What rarity of Mob Captain is announced to chat and with a sound, with 0 being for none, 1 only for legendaries and 4 being for all rarities of Mob Captain" }},
+                "contents": "What rarity of Mob Captain is announced to chat, with 0 being for none, 1 only for legendaries and 4 being for all rarities of Mob Captain" }},
         { "text": "[0 - 4]", "color": "gray" },
         { "text": " " },
         { "score": {
