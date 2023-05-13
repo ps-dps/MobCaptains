@@ -74,6 +74,16 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
     <td>What rarity of Mob Captain is announced to chat and with a sound, with 0 being for none, 1 only for legendaries and 4 being for all rarities of Mob Captain</td>
   </tr>
   <tr>
+    <td><code>.notify_with_sound</code></td>
+    <td><code>1</code></td>
+    <td>If a Mob Captain is announced to chat, a sound to all nearby players will play, with 0 being disabled and 1 being enabled</td>
+  </tr>
+  <tr>
+    <td><code>.should_glow</code></td>
+    <td><code>0</code></td>
+    <td>If a Mob Captain's silhouette should show through blocks, with 0 being disabled and 1 being enabled</td>
+  </tr>
+  <tr>
     <td><code>.beam_on_spawn</code></td>
     <td><code>1</code></td>
     <td>If Mob Captains should create a particle beam when spawning that shows their location for about 1 second, with 1 being turned on and 0 it being turned off</td>
