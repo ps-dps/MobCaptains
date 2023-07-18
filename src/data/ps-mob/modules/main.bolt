@@ -3,35 +3,28 @@ import ./entitytags as entityTags
 import ./chances as chances
 import ./loottables as lootTables
 from ./particles import circle
-from bolt_expressions import Scoreboard, Data
-from allay import Parser
-from ast import literal_eval
-
-mainScore = ctx.inject(Scoreboard).objective("ps-mob")
-config = ctx.inject(Scoreboard).objective("ps-mob.config")
-p = Parser()
 
 append function_tag load:load {"values":["ps-mob:load"]}
 function ./load:
     scoreboard objectives add ps-mob dummy
     scoreboard objectives add ps-mob.config dummy [{"text":"M","color":"white"},{"text":"o","color":"#FF0000"},{"text":"b C","color":"white"},{"text":"a","color":"#FF0000"},{"text":"ptains ","color":"white"},{"text":"Config","color":"gold"}]
 
-    def setBaseConfig(name, value):
-        unless score f'{name}' ps-mob.config = f'{name}' ps-mob.config:
-            config[f'{name}'] = value
+    def init_config(name, value):
+        unless score name ps-mob.config = name ps-mob.config
+            scoreboard players set name ps-mob.config value
 
-    setBaseConfig(".cool_down", 60)
-    setBaseConfig(".spawn_chance", 10)
+    init_config(".cool_down", 60)
+    init_config(".spawn_chance", 10)
 
-    setBaseConfig(".weight_common", 50)
-    setBaseConfig(".weight_uncommon", 30)
-    setBaseConfig(".weight_rare", 9)
-    setBaseConfig(".weight_legendary", 2)
+    init_config(".weight_common", 50)
+    init_config(".weight_uncommon", 30)
+    init_config(".weight_rare", 9)
+    init_config(".weight_legendary", 2)
 
-    setBaseConfig(".notify_on_spawn", 2)
-    setBaseConfig(".notify_with_sound", 1)
-    setBaseConfig(".should_glow", 0)
-    setBaseConfig(".beam_on_spawn", 1)
+    init_config(".notify_on_spawn", 2)
+    init_config(".notify_with_sound", 1)
+    init_config(".should_glow", 0)
+    init_config(".beam_on_spawn", 1)
 
     team add ps-mob.common
     team modify ps-mob.common color gray
@@ -43,10 +36,8 @@ function ./load:
     team modify ps-mob.legendary color gold
 
     unless score #random ps-mob = #random ps-mob store result score #random ps-mob run seed
-    unless score #rand_a ps-mob = #rand_a ps-mob:
-        mainScore["#rand_a"] = 1234567
-    unless score #rand_c ps-mob = #rand_c ps-mob:
-        mainScore["#rand_c"] = 1234567
+    unless score #rand_a ps-mob = #rand_a ps-mob scoreboard players set #rand_a ps-mob 1234567
+    unless score #rand_c ps-mob = #rand_c ps-mob scoreboard players set #rand_c ps-mob 1234567
 
     schedule function ./tick 2t replace:
         schedule function ./tick 2t replace
@@ -69,26 +60,24 @@ function ./load:
 
     schedule function ./register_new 1s replace:
         schedule function ./register_new 1s replace
-        if score .cool_down ps-mob matches 1..:
-            mainScore[".cool_down"] -= 1
-        unless score .cool_down ps-mob matches 1..
-            as @e[type=#ps-mob:captains,tag=!ps-mob,tag=!smithed.entity]
-            run function ./captain_check
+        if score .cool_down ps-mob matches 1.. scoreboard players remove .cool_down ps-mob 1
+        unless score .cool_down ps-mob matches 1.. as @e[type=#ps-mob:captains,tag=!ps-mob,tag=!smithed.entity] function ./captain_check
         tag @e[type=#ps-mob:captains,tag=!ps-mob,tag=!smithed.entity] add ps-mob
 
 function ./captain_check:
-    unless score .cool_down ps-mob matches 1..:
-        mainScore[".faliure"] += 1
+    unless score .cool_down ps-mob matches 1.. scoreboard players add .failure ps-mob 1
 
-    mainScore["#try"].reset()
-    unless score .cool_down ps-mob matches 1..
-        if predicate ./should_spawn
-        if predicate ./per_failure:
-            mainScore["#try"] = 1
+    scoreboard players reset #try ps-mob
+    unless score .cool_down ps-mob matches 1.. if predicate ./should_spawn if predicate ./per_failure scoreboard players set #try ps-mob 1
 
-    mainScore[".weight_max"] = config[".weight_common"] + config[".weight_uncommon"] + config[".weight_rare"] + config[".weight_legendary"]
+    scoreboard players operation .weight_max ps-mob = .weight_common ps-mob.config
+    scoreboard players operation .weight_max ps-mob += .weight_uncommon ps-mob.config
+    scoreboard players operation .weight_max ps-mob += .weight_rare ps-mob.config
+    scoreboard players operation .weight_max ps-mob += .weight_legendary ps-mob.config
     function ./next_random
-    mainScore[".rand%"] = (mainScore["#random"] % mainScore[".weight_max"]) + 1
+    scoreboard players operation .rand% ps-mob = #random ps-mob
+    scoreboard players operation .rand% ps-mob %= .weight_max ps-mob
+    scoreboard players add .rand% ps-mob 1
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
@@ -102,12 +91,11 @@ function ./captain_check:
             tag @s add ps-mob.common
             team join ps-mob.common @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/common"
-            if score .notify_on_spawn ps-mob.config matches 4.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=gray)[ A ](color=white)[common Mob Captain](color=gray)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 4.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "gray"}, {"text": " A ", "color": "white"}, {"text": "common Mob Captain", "color": "gray"}, {"text": " has spawned nearby!", "color": "white"}]
             if score .notify_on_spawn ps-mob.config matches 4.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
             if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 1 1 1 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
-    if score #try ps-mob matches 1:
-        mainScore[".rand%"] -= config[".weight_common"]
+    if score #try ps-mob matches 1 scoreboard players operation .rand% ps-mob -= .weight_common ps-mob.config
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
@@ -121,12 +109,11 @@ function ./captain_check:
             tag @s add ps-mob.uncommon
             team join ps-mob.uncommon @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
-            if score .notify_on_spawn ps-mob.config matches 3.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#00FF00)[ An ](color=white)[uncommon Mob Captain](color=#00FF00)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 3.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "#00FF00"}, {"text": " An ", "color": "white"}, {"text": "uncommon Mob Captain", "color": "#00FF00"}, {"text": " has spawned nearby!", "color": "white"}]
             if score .notify_on_spawn ps-mob.config matches 3.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
             if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 0 1 0 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
-    if score #try ps-mob matches 1:
-        mainScore[".rand%"] -= config[".weight_uncommon"]
+    if score #try ps-mob matches 1 scoreboard players operation .rand% ps-mob -= .weight_uncommon ps-mob.config
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
@@ -140,12 +127,11 @@ function ./captain_check:
             tag @s add ps-mob.rare
             team join ps-mob.rare @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
-            if score .notify_on_spawn ps-mob.config matches 2.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=#B400FF)[ A ](color=white)[rare Mob Captain](color=#B400FF)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 2.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "#B400FF"}, {"text": " A ", "color": "white"}, {"text": "rare Mob Captain", "color": "#B400FF"}, {"text": " has spawned nearby!", "color": "white"}]
             if score .notify_on_spawn ps-mob.config matches 2.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
             if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 0.7 0 1 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
-    if score #try ps-mob matches 1:
-        mainScore[".rand%"] -= config[".weight_rare"]
+    if score #try ps-mob matches 1 scoreboard players operation .rand% ps-mob -= .weight_rare ps-mob.config
 
     if score #try ps-mob matches 1
         unless score .cool_down ps-mob matches 1..
@@ -159,7 +145,7 @@ function ./captain_check:
             tag @s add ps-mob.legendary
             team join ps-mob.legendary @s
             data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
-            if score .notify_on_spawn ps-mob.config matches 1.. at @s run tellraw @a[distance=..128] literal_eval(p.parse("[☠](color=red)[ A ](color=white)[l](color=#ff5151)[e](color=#ffb74d)[g](color=#ffff87)[e](color=#51ff51)[n](color=#4d4dff)[d](color=#9933cc)[a](color=#cc66cc)[r](color=#cc00cc)[y](color=#ff87ff)[ Mob Captain](color=red)[ has spawned nearby!](color=white)"))
+            if score .notify_on_spawn ps-mob.config matches 1.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "red"}, {"text": " A ", "color": "white"}, {"text": "l", "color": "#ff5151"}, {"text": "e", "color": "#ffb74d"}, {"text": "g", "color": "#ffff87"}, {"text": "e", "color": "#51ff51"}, {"text": "n", "color": "#4d4dff"}, {"text": "d", "color": "#9933cc"}, {"text": "a", "color": "#cc66cc"}, {"text": "r", "color": "#cc00cc"}, {"text": "y", "color": "#ff87ff"}, {"text": " Mob Captain", "color": "red"}, {"text": " has spawned nearby!", "color": "white"}]
             if score .notify_on_spawn ps-mob.config matches 1.. if score .notify_with_sound ps-mob.config matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
             if score .beam_on_spawn ps-mob.config matches 1 at @s run particle dust 10 10 10 5 ~ ~ ~ 0 200 0 0 300 force
             function ./convert/captain
@@ -168,15 +154,14 @@ function ./convert/captain:
     if score .should_glow ps-mob.config matches 1 effect give @s glowing 1000000 0 true
     tag @s add smithed.entity
     tag @s add ps-mob.captain
-    mainScore["#try"].reset()
-    mainScore[".faliure"].reset()
-    mainScore[".cool_down"] = config[".cool_down"]
-    store result entity @s Health float 1:
-        attribute @s minecraft:generic.max_health get
+    scoreboard players reset #try ps-mob
+    scoreboard players reset .faliure ps-mob
+    scoreboard players operation .cool_down ps-mob = .cool_down ps-mob.config
+    store result entity @s Health float 1 attribute @s minecraft:generic.max_health get
 
 function ./next_random:
-    mainScore["#random"] *= mainScore["#rand_a"]
-    mainScore["#random"] += mainScore["#rand_c"]
+    scoreboard players operation #random ps-mob *= #rand_a ps-mob
+    scoreboard players operation #random ps-mob += #rand_c ps-mob
 
 function ./config:
     tellraw @s [
