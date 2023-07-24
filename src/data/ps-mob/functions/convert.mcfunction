@@ -19,7 +19,7 @@ function ~/common:
     tag @s add f'{namespace}.common'
     team join f'{namespace}.common' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/common"
-    if score .notify_on_spawn config_score matches 4.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "gray"}, {"text": " A ", "color": "white"}, {"text": "common Mob Captain", "color": "gray"}, {"text": " has spawned nearby!", "color": "white"}]
+    if score .notify_on_spawn config_score matches 4.. at @s run tellraw @a[distance=..128] ["", {"text": "\u2620", "color": "gray"}, {"text": " A ", "color": "white"}, {"text": "common Mob Captain", "color": "gray"}, {"text": " has spawned nearby!", "color": "white"}]
     if score .notify_on_spawn config_score matches 4.. if score .notify_with_sound config_score matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
     if score .beam_on_spawn config_score matches 1 at @s run particle dust 1 1 1 5 ~ ~ ~ 0 200 0 0 300 force
     function ~/../captain
@@ -33,7 +33,7 @@ function ~/uncommon:
     tag @s add f'{namespace}.uncommon'
     team join f'{namespace}.uncommon' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
-    if score .notify_on_spawn config_score matches 3.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "#00FF00"}, {"text": " An ", "color": "white"}, {"text": "uncommon Mob Captain", "color": "#00FF00"}, {"text": " has spawned nearby!", "color": "white"}]
+    if score .notify_on_spawn config_score matches 3.. at @s run tellraw @a[distance=..128] ["", {"text": "\u2620", "color": "#00FF00"}, {"text": " An ", "color": "white"}, {"text": "uncommon Mob Captain", "color": "#00FF00"}, {"text": " has spawned nearby!", "color": "white"}]
     if score .notify_on_spawn config_score matches 3.. if score .notify_with_sound config_score matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
     if score .beam_on_spawn config_score matches 1 at @s run particle dust 0 1 0 5 ~ ~ ~ 0 200 0 0 300 force
     function ~/../captain
@@ -47,7 +47,7 @@ function ~/rare:
     tag @s add f'{namespace}.rare'
     team join f'{namespace}.rare' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
-    if score .notify_on_spawn config_score matches 2.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "#B400FF"}, {"text": " A ", "color": "white"}, {"text": "rare Mob Captain", "color": "#B400FF"}, {"text": " has spawned nearby!", "color": "white"}]
+    if score .notify_on_spawn config_score matches 2.. at @s run tellraw @a[distance=..128] ["", {"text": "\u2620", "color": "#B400FF"}, {"text": " A ", "color": "white"}, {"text": "rare Mob Captain", "color": "#B400FF"}, {"text": " has spawned nearby!", "color": "white"}]
     if score .notify_on_spawn config_score matches 2.. if score .notify_with_sound config_score matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
     if score .beam_on_spawn config_score matches 1 at @s run particle dust 0.7 0 1 5 ~ ~ ~ 0 200 0 0 300 force
     function ~/../captain
@@ -61,7 +61,7 @@ function ~/legendary:
     tag @s add f'{namespace}.legendary'
     team join f'{namespace}.legendary' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
-    if score .notify_on_spawn config_score matches 1.. at @s run tellraw @a[distance=..128] ["", {"text": "\\u2620", "color": "red"}, {"text": " A ", "color": "white"}, {"text": "l", "color": "#ff5151"}, {"text": "e", "color": "#ffb74d"}, {"text": "g", "color": "#ffff87"}, {"text": "e", "color": "#51ff51"}, {"text": "n", "color": "#4d4dff"}, {"text": "d", "color": "#9933cc"}, {"text": "a", "color": "#cc66cc"}, {"text": "r", "color": "#cc00cc"}, {"text": "y", "color": "#ff87ff"}, {"text": " Mob Captain", "color": "red"}, {"text": " has spawned nearby!", "color": "white"}]
+    if score .notify_on_spawn config_score matches 1.. at @s run tellraw @a[distance=..128] ["", {"text": "\u2620", "color": "red"}, {"text": " A ", "color": "white"}, {"text": "l", "color": "#ff5151"}, {"text": "e", "color": "#ffb74d"}, {"text": "g", "color": "#ffff87"}, {"text": "e", "color": "#51ff51"}, {"text": "n", "color": "#4d4dff"}, {"text": "d", "color": "#9933cc"}, {"text": "a", "color": "#cc66cc"}, {"text": "r", "color": "#cc00cc"}, {"text": "y", "color": "#ff87ff"}, {"text": " Mob Captain", "color": "red"}, {"text": " has spawned nearby!", "color": "white"}]
     if score .notify_on_spawn config_score matches 1.. if score .notify_with_sound config_score matches 1 at @s run playsound entity.wither.spawn ambient @a[distance=..128] ~ ~ ~ 0.5 1.8 0.5
     if score .beam_on_spawn config_score matches 1 at @s run particle dust 10 10 10 5 ~ ~ ~ 0 200 0 0 300 force
     function ~/../captain
