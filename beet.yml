@@ -17,6 +17,4 @@ pipeline:
   - plugins.remove_empty_functions
   - plugins.credit
 meta:
-#   bolt:
-#     entrypoint: ps-mob:main
   credit: [ps-mob]
