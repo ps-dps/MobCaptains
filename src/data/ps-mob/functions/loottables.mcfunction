@@ -5,7 +5,7 @@ def item(item, funcs):
     funcs.append({"function":"minecraft:set_lore",
         "lore": [{ "text": "MobCaptains",
                     "color": "blue",
-                    "italic": "false"}]})
+                    "italic": False}]})
     return {
         "type": "minecraft:item",
         "name": f'minecraft:{item}',
@@ -28,7 +28,7 @@ def name(name, color):
     return { "function": "minecraft:set_name", "name": {
         "text": name,
         "color": color,
-        "italic": "false"}}
+        "italic": False}}
 
 # //////////////////////////////////////////////// #
 
@@ -46,40 +46,40 @@ loot_table ./overworld/common {
         ]),
         item('stick', [
             name('Knockback Stick', '#ff9d00'),
-            enchantments('knockback', (2,4))
+            enchantments('knockback', (2,4)),
         ]),
         item('golden_axe', [
             name('Greed', '#d99307'),
-            enchantments('looting', (1,4))
+            enchantments('looting', (1,4)),
         ]),
         item('leather_helmet', [
             name('Propeller Hat', '#00ff00'),
-            enchantments('feather_falling', (1,4))
-            nbt('{display:{color:16711680}}')
+            enchantments('feather_falling', (1,4)),
+            nbt('{display:{color:16711680}}'),
         ]),
         item('golden_chestplate', [
             name('Cactus', '#30de00'),
-            enchantments('thorns', (1,5))
+            enchantments('thorns', (1,5)),
         ]),
         item('wooden_sword', [
             name('Match', '#c23511'),
-            enchantments('fire_aspect', (1,4))
+            enchantments('fire_aspect', (1,4)),
         ]),
         item('crossbow', [
             name('Multiplier', '#96ffcb'),
-            enchantments('piercing', (1,4), 'multishot', 1)
+            enchantments('piercing', (1,4), 'multishot', 1),
         ]),
         item('iron_axe', [
             name('Mjölnir', '#fff291'),
-            enchantments('smite', (2,5))
+            enchantments('smite', (2,5)),
         ]),
         item('stone_axe', [
             name('Primitive Chainsaw', '#383130'),
-            enchantments('efficiency', (3,6))
+            enchantments('efficiency', (3,6)),
         ]),
         item('golden_pickaxe', [
             name('Primitive Mining Drill', '#756e6c'),
-            enchantments('efficiency', (3,6))
+            enchantments('efficiency', (3,6)),
         ]),
     ]}]}
 
