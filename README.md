@@ -84,6 +84,11 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
     <td>If a Mob Captain's silhouette should show through blocks, with 0 being disabled and 1 being enabled</td>
   </tr>
   <tr>
+    <td><code>.exists_for</code></td>
+    <td><code>6000</code></td>
+    <td>How long a Mob Captain will not be able to despawn in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 6000 -> 5 Minutes</td>
+  </tr>
+  <tr>
     <td><code>.beam_on_spawn</code></td>
     <td><code>1</code></td>
     <td>If Mob Captains should create a particle beam when spawning that shows their location for about 1 second, with 1 being turned on and 0 it being turned off</td>

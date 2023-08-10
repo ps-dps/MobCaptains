@@ -49,6 +49,9 @@ config.extend(to_config(
     "Block Area", ".block_area", (0, 2147483647), True,
     "How long should Mob Captain spawning be stopped within 24 blocks of another Mob Captain spawning in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 12000 -> 10 Minutes" ))
 config.extend(to_config(
+    "Exists For", ".exists_for", (0, 2147483647), True,
+    "How long a Mob Captain will not be able to despawn in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 6000 -> 5 Minutes" ))
+config.extend(to_config(
     "Weight common", ".weight_common", (0, 2147483647), True,
     "Weight for a Mob Captain being of common rarity" ))
 config.extend(to_config(

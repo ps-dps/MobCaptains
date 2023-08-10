@@ -10,6 +10,7 @@ function ~/captain:
     scoreboard players operation .cool_down namespace = .cool_down config_score
     store result entity @s Health float 1 attribute @s minecraft:generic.max_health get
     at @s summon marker function ./block_area/add with storage ps:mob block_area
+    function ./persistence/add with storage ps:mob persistence
 
 function ~/common:
     attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 0.5 multiply
