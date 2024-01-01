@@ -121,7 +121,4 @@ If you want to alter the items themselves, edit the loot tables at `/data/ps-mob
 - Option to see Mob Captains through walls with a **glowing outline**
 
 ---
-Check me out on other platforms:
-
-[<img src="https://docs.modrinth.com/img/logo.svg" height="40" width="40"/>](https://modrinth.com/user/PuckiSilver)
-[<img src="https://www.planetminecraft.com/images/layout/favicon-64.png" height="40" width="40"/>](https://www.planetminecraft.com/member/puckisilver)
+[![PuckiSilver on GitHub](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/GitHub.png)](https://github.com/PuckiSilver)[![PuckiSilver on modrinth](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/modrinth.png)](https://modrinth.com/user/PuckiSilver)[![PuckiSilver on PlanetMinecraft](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/PlanetMinecraft.png)](https://planetminecraft.com/m/PuckiSilver)[![PuckiSilver on PayPal](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/PayPal.png)](https://paypal.me/puckisilver)
