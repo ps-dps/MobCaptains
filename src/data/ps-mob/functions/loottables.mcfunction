@@ -33,7 +33,7 @@ def name(name, color):
 
 # //////////////////////////////////////////////// #
 
-loot_table ./overworld/common {
+loot_table ./base/common {
     "pools": [{ "rolls": 1, "entries": [
         item('potion', 90, [
             name('Medkit', '#ff45f6'),
@@ -84,7 +84,7 @@ loot_table ./overworld/common {
         ]),
     ]}]}
 
-loot_table ./overworld/uncommon {
+loot_table ./base/uncommon {
     "pools": [{ "rolls": 1, "entries": [
         item('golden_chestplate', 80, [
             name('S.W.A.T. Vest', '#997932'),
@@ -128,7 +128,7 @@ loot_table ./overworld/uncommon {
         ]),
     ]}]}
 
-loot_table ./overworld/rare {
+loot_table ./base/rare {
     "pools": [{ "rolls": 1, "entries": [
         item('trident', 20, [
             name('Ripper', '#470854'),
@@ -157,7 +157,7 @@ loot_table ./overworld/rare {
         ]),
     ]}]}
 
-loot_table ./overworld/legendary {
+loot_table ./base/legendary {
     "pools": [{ "rolls": 1, "entries": [
         item('elytra', 20, [
             name('Plated Elytra', '#ccbdf0'),
@@ -171,4 +171,98 @@ loot_table ./overworld/legendary {
             name('Robin\'s Bow', '#49db00'),
             enchantments('mending', 1, 'infinity', 1),
         ]),
+    ]}]}
+
+# //////////////////////////////////////////////// #
+
+loot_table ./captain/common { "pools": [{ "rolls": 1, "entries": [
+    {
+        "type": "minecraft:loot_table",
+        "weight": 80,
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 13,
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 6,
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 1,
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    ]}]}
+
+loot_table ./captain/uncommon { "pools": [{ "rolls": 1, "entries": [
+    {
+        "type": "minecraft:loot_table",
+        "weight": 13,
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight":80,
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 6,
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 1,
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    ]}]}
+
+loot_table ./captain/rare { "pools": [{ "rolls": 1, "entries": [
+    {
+        "type": "minecraft:loot_table",
+        "weight": 6,
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 13,
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 80,
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 1,
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    ]}]}
+
+loot_table ./captain/legendary { "pools": [{ "rolls": 1, "entries": [
+    {
+        "type": "minecraft:loot_table",
+        "weight": 1,
+        "name": "ps-mob:base/common",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 6,
+        "name": "ps-mob:base/uncommon",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 13,
+        "name": "ps-mob:base/rare",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
+    {
+        "type": "minecraft:loot_table",
+        "weight": 80,
+        "name": "ps-mob:base/legendary",
+        "conditions": [{ "condition": "minecraft:killed_by_player" }]},
     ]}]}
