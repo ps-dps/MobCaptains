@@ -14,15 +14,15 @@ function ~/check_mob:
 
     if score .rand% namespace <= .weight_common config_score function ./convert/common
     scoreboard players operation .rand% namespace -= .weight_common config_score
-    if score .rand% namespace matches ..-1 return -1
+    if score .rand% namespace matches ..0 return -1
 
     if score .rand% namespace <= .weight_uncommon config_score function ./convert/uncommon
     scoreboard players operation .rand% namespace -= .weight_uncommon config_score
-    if score .rand% namespace matches ..-1 return -1
+    if score .rand% namespace matches ..0 return -1
 
     if score .rand% namespace <= .weight_rare config_score function ./convert/rare
     scoreboard players operation .rand% namespace -= .weight_rare config_score
-    if score .rand% namespace matches ..-1 return -1
+    if score .rand% namespace matches ..0 return -1
 
     if score .rand% namespace <= .weight_legendary config_score function ./convert/legendary
 
