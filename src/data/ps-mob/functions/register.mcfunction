@@ -8,24 +8,24 @@ function ~/check_mob:
     unless predicate ./should_spawn return 0
     unless predicate ./per_faliure return 0
 
-    scoreboard players operation #random namespace *= #rand_a namespace
-    scoreboard players operation #random namespace += #rand_c namespace
-    scoreboard players operation .rand% namespace = #random namespace
-    scoreboard players operation .rand% namespace %= .weight_max namespace
+    function ~/../random with storage ps:mob random
 
-    if score .rand% namespace <= .weight_common config_score function ./convert/common
-    scoreboard players operation .rand% namespace -= .weight_common config_score
-    if score .rand% namespace matches ..0 return 0
+    if score #random namespace <= .weight_common config_score function ./convert/common
+    scoreboard players operation #random namespace -= .weight_common config_score
+    if score #random namespace matches ..0 return 1
+    
+    if score #random namespace <= .weight_uncommon config_score function ./convert/uncommon
+    scoreboard players operation #random namespace -= .weight_uncommon config_score
+    if score #random namespace matches ..0 return 1
+    
+    if score #random namespace <= .weight_rare config_score function ./convert/rare
+    scoreboard players operation #random namespace -= .weight_rare config_score
+    if score #random namespace matches ..0 return 1
+    
+    if score #random namespace <= .weight_legendary config_score function ./convert/legendary
 
-    if score .rand% namespace <= .weight_uncommon config_score function ./convert/uncommon
-    scoreboard players operation .rand% namespace -= .weight_uncommon config_score
-    if score .rand% namespace matches ..0 return 0
-
-    if score .rand% namespace <= .weight_rare config_score function ./convert/rare
-    scoreboard players operation .rand% namespace -= .weight_rare config_score
-    if score .rand% namespace matches ..0 return 0
-
-    if score .rand% namespace <= .weight_legendary config_score function ./convert/legendary
+function ~/random:
+    raw f'$execute store result score #random {namespace} run random value $(min)..$(max)'
 
 predicate ./per_failure {
     "condition": "minecraft:inverted", "term": {
@@ -43,7 +43,7 @@ predicate ./should_spawn {
         "min": 1,
         "max": 1000 },
     "range": {
-        "min": 1,
+        "min": 0,
         "max": {
             "type": "minecraft:score", "target": { "type": "minecraft:fixed",
                 "name": ".spawn_chance" },

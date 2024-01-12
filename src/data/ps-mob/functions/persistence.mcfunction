@@ -7,6 +7,6 @@ function ~/add:
 function ~/remove:
     store result score .gametime ps-mob run time query gametime
 
-    as @e[tag=f'{namespace}.captain',type=f'#{namespace}:captains']
-        if score @s f'{namespace}.persistence' <= .gametime ps-mob
+    as @e[tag=f'{namespace}.captain',type=f'#{namespace}:captains'] if score @s f'{namespace}.persistence' <= .gametime ps-mob function ~/../remove2:
         data modify entity @s PersistenceRequired set value 0b
+        scoreboard players reset @s f'{namespace}.persistence'
