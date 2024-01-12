@@ -39,6 +39,7 @@ function ~/config:
         }
         for name, value in config_dict.items():
             scoreboard players set name config_score value
+        reload
 
     function ~/swift_spawn:
         config_dict = {
@@ -58,6 +59,7 @@ function ~/config:
         }
         for name, value in config_dict.items():
             scoreboard players set name config_score value
+        reload
     
     function ~/only_legendary:
         config_dict = {
@@ -77,6 +79,7 @@ function ~/config:
         }
         for name, value in config_dict.items():
             scoreboard players set name config_score value
+        reload
 
 
 function ~/convert:
