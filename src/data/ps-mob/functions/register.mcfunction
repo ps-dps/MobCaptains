@@ -4,7 +4,7 @@ config_score = f'{namespace}.config'
 function ~/check_mob:
     if score .cool_down namespace matches 1.. return 0
     scoreboard players add .failure namespace 1
-    if score .block_area config_score matches 1.. at @s if entity @e[type=marker,limit=1,distance=..24,tag=f'{namespace}.block_area'] return 0
+    at @s if entity @e[type=marker,limit=1,distance=..24,tag=f'{namespace}.block_area'] return 0
     unless predicate ./should_spawn return 0
     unless predicate ./per_faliure return 0
 
