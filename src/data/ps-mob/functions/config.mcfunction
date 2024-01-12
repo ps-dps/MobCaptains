@@ -46,6 +46,9 @@ config.extend(to_config(
     "Beam on spawn", ".beam_on_spawn", (0, 1), False,
     "If Mob Captains should create a particle beam when spawning that shows their location for about 1 second, with 1 being turned on and 0 it being turned off" ))
 config.extend(to_config(
+    "Block Area", ".block_area", (0, 2147483647), True,
+    "How long should Mob Captain spawning be stopped within 24 blocks of another Mob Captain spawning in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 12000 -> 10 Minutes" ))
+config.extend(to_config(
     "Weight common", ".weight_common", (0, 2147483647), True,
     "Weight for a Mob Captain being of common rarity" ))
 config.extend(to_config(

@@ -94,6 +94,11 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
     <td>Weight for a Mob Captain being of common rarity</td>
   </tr>
   <tr>
+    <td><code>.block_area</code></td>
+    <td><code>12000</code></td>
+    <td>How long should Mob Captain spawning be stopped within 24 blocks of another Mob Captain spawning in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 12000 -> 10 Minutes</td>
+  </tr>
+  <tr>
     <td><code>.weight_uncommon</code></td>
     <td><code>30</code></td>
     <td>Weight for a Mob Captain being of uncommon rarity</td>
