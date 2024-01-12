@@ -25,7 +25,7 @@ function ~/check_mob:
     if score #random namespace <= .weight_legendary config_score function ./convert/legendary
 
 function ~/random:
-    raw f'$execute store result score #random {namespace} run random value $(min)..$(max)'
+    raw f'$execute store result score #random {namespace} run random value 1..$(max)'
 
 predicate ./per_failure {
     "condition": "minecraft:inverted", "term": {

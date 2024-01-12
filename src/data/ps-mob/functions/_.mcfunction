@@ -73,7 +73,7 @@ function ~/config:
             ".weight_common":     0,
             ".weight_uncommon":   0,
             ".weight_rare":       0,
-            ".weight_legendary":  1,
+            ".weight_legendary":  2,
         }
         for name, value in config_dict.items():
             scoreboard players set name config_score value

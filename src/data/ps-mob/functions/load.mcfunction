@@ -44,7 +44,6 @@ scoreboard players operation .weight_max namespace += .weight_uncommon config_sc
 scoreboard players operation .weight_max namespace += .weight_rare config_score
 scoreboard players operation .weight_max namespace += .weight_legendary config_score
 
-data modify storage ps:mob random.min set value 1
 store result storage ps:mob random.max int 1 run scoreboard players get .weight_max namespace
 
 store result storage ps:mob block_area.time int 1 run scoreboard players get .block_area config_score
