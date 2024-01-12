@@ -89,6 +89,11 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
     <td>How long a Mob Captain will not be able to despawn in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 6000 -> 5 Minutes</td>
   </tr>
   <tr>
+    <td><code>.block_area</code></td>
+    <td><code>12000</code></td>
+    <td>How long should Mob Captain spawning be stopped within 24 blocks of another Mob Captain spawning in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 12000 -> 10 Minutes</td>
+  </tr>
+  <tr>
     <td><code>.beam_on_spawn</code></td>
     <td><code>1</code></td>
     <td>If Mob Captains should create a particle beam when spawning that shows their location for about 1 second, with 1 being turned on and 0 it being turned off</td>
@@ -97,11 +102,6 @@ Set the scoreboard values of the <code>ps-mob.config</code> scoreboard to your d
     <td><code>.weight_common</code></td>
     <td><code>55</code></td>
     <td>Weight for a Mob Captain being of common rarity</td>
-  </tr>
-  <tr>
-    <td><code>.block_area</code></td>
-    <td><code>12000</code></td>
-    <td>How long should Mob Captain spawning be stopped within 24 blocks of another Mob Captain spawning in ticks, so 20 -> 1 Second, 1200 -> 1 Minute, 12000 -> 10 Minutes</td>
   </tr>
   <tr>
     <td><code>.weight_uncommon</code></td>
