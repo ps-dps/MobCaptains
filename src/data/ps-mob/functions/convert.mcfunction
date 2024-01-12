@@ -6,7 +6,7 @@ function ~/captain:
     tag @s add smithed.entity
     tag @s add f'{namespace}.captain'
     scoreboard players reset #try namespace
-    scoreboard players reset .faliure namespace
+    scoreboard players reset .failure namespace
     scoreboard players operation .cool_down namespace = .cool_down config_score
     store result entity @s Health float 1 attribute @s minecraft:generic.max_health get
     at @s summon marker function ./block_area/add with storage ps:mob block_area
