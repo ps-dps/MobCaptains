@@ -7,6 +7,7 @@ append function_tag load:load {"values":[f'{namespace}:load']}
 
 scoreboard objectives add namespace dummy
 scoreboard objectives add config_score dummy [{"text":"M","color":"white"},{"text":"o","color":"#FF0000"},{"text":"b C","color":"white"},{"text":"a","color":"#FF0000"},{"text":"ptains ","color":"white"},{"text":"Config","color":"gold"}]
+scoreboard objectives add f'{namespace}.block_area' dummy
 
 config_dict = {
     ".cool_down":         60,
@@ -15,6 +16,7 @@ config_dict = {
     ".notify_with_sound": 1,
     ".should_glow":       0,
     ".beam_on_spawn":     1,
+    ".block_area":        12000,
 
     ".weight_common":     50,
     ".weight_uncommon":   30,
@@ -44,6 +46,7 @@ unless score #random namespace = #random namespace store result score #random na
 unless score #rand_a namespace = #rand_a namespace scoreboard players set #rand_a namespace 1234567
 unless score #rand_c namespace = #rand_c namespace scoreboard players set #rand_c namespace 1234567
 
+store result storage ps:mob block_area.time int 1 run scoreboard players get .block_area config_score
 
 schedule function ./particles/tick_2t 2t replace:
     schedule function ./particles/tick_2t 2t replace

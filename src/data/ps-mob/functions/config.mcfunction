@@ -9,6 +9,7 @@ def to_config(name, fakeplayer, from_to, is_range, description):
         range = f'[{from_to[0]} or {from_to[1]}]'
 
     return [
+        { "text": "\n" },
         { "text": f'{name} ',
             "clickEvent": {
                 "action": "suggest_command",
@@ -21,13 +22,10 @@ def to_config(name, fakeplayer, from_to, is_range, description):
         { "score": {
                 "name": fakeplayer,
                 "objective": config_score },
-            "color": "red" },
-        { "text": "\n" }
+            "color": "red" }
     ]
 
-config = ["", { "text": "\n" },
-        {"text":"M","color":"white"},{"text":"o","color":"#FF0000"},{"text":"b C","color":"white"},{"text":"a","color":"#FF0000"},{"text":"ptains ","color":"white"},{"text":"Config","color":"gold"},
-        { "text": "\n" }]
+config = ["", { "text": "\n" }, {"text":"M","color":"white"},{"text":"o","color":"#FF0000"},{"text":"b C","color":"white"},{"text":"a","color":"#FF0000"},{"text":"ptains ","color":"white"},{"text":"Config","color":"gold"}]
 
 config.extend(to_config(
     "Cool down", ".cool_down", (0, 2147483647), True,
@@ -59,5 +57,18 @@ config.extend(to_config(
 config.extend(to_config(
     "Weight legendary", ".weight_legendary", (0, 2147483647), True,
     "Weight for a Mob Captain being of legendary rarity" ))
+
+config.extend([
+    { "text": "\n\nYou need to run " },
+    { "text": "/reload",
+        "clickEvent": {
+            "action": "run_command",
+            "value": f'/reload' },
+        "hoverEvent": {
+            "action": "show_text",
+            "contents": "Click to run the /reload command" },
+    "color": "red" },
+    { "text": " for some of the changes to take effect" },
+])
 
 tellraw @s config

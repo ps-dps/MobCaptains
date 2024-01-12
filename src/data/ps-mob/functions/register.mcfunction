@@ -2,10 +2,11 @@ namespace = __name__.split(':')[0]
 config_score = f'{namespace}.config'
 
 function ~/check_mob:
-    if score .cool_down namespace matches 1.. return -1
+    if score .cool_down namespace matches 1.. return 0
     scoreboard players add .failure namespace 1
-    unless predicate ./should_spawn return -1
-    unless predicate ./per_faliure return -1
+    if score .block_area config_score matches 1.. at @s if entity @e[type=marker,limit=1,distance=..24,tag=f'{namespace}.block_area'] return 0
+    unless predicate ./should_spawn return 0
+    unless predicate ./per_faliure return 0
 
     scoreboard players operation #random namespace *= #rand_a namespace
     scoreboard players operation #random namespace += #rand_c namespace
@@ -14,15 +15,15 @@ function ~/check_mob:
 
     if score .rand% namespace <= .weight_common config_score function ./convert/common
     scoreboard players operation .rand% namespace -= .weight_common config_score
-    if score .rand% namespace matches ..0 return -1
+    if score .rand% namespace matches ..0 return 0
 
     if score .rand% namespace <= .weight_uncommon config_score function ./convert/uncommon
     scoreboard players operation .rand% namespace -= .weight_uncommon config_score
-    if score .rand% namespace matches ..0 return -1
+    if score .rand% namespace matches ..0 return 0
 
     if score .rand% namespace <= .weight_rare config_score function ./convert/rare
     scoreboard players operation .rand% namespace -= .weight_rare config_score
-    if score .rand% namespace matches ..0 return -1
+    if score .rand% namespace matches ..0 return 0
 
     if score .rand% namespace <= .weight_legendary config_score function ./convert/legendary
 
