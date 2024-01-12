@@ -81,25 +81,29 @@ function ~/config:
 
 function ~/convert:
     function ~/common:
+        function ~/../../unconvert
         tag @s add f'{namespace}.fake_particles'
         function ./convert/common
-        schedule function ~/ 2t replace
+        schedule function ./zzz/fake_particles 2t replace
     function ~/uncommon:
+        function ~/../../unconvert
         tag @s add f'{namespace}.fake_particles'
         function ./convert/uncommon
-        schedule function ~/ 2t replace
+        schedule function ./zzz/fake_particles 2t replace
     function ~/rare:
+        function ~/../../unconvert
         tag @s add f'{namespace}.fake_particles'
         function ./convert/rare
-        schedule function ~/ 2t replace
+        schedule function ./zzz/fake_particles 2t replace
     function ~/legendary:
+        function ~/../../unconvert
         tag @s add f'{namespace}.fake_particles'
         function ./convert/legendary
-        schedule function ~/ 2t replace
+        schedule function ./zzz/fake_particles 2t replace
     function ~/none:
-        function ~/../unconvert
+        function ~/../../unconvert
 
 
 function ./zzz/fake_particles:
-    as @a[tag=f'{namespace}.fake_particles'] function ./particles/as_captain
+    as @a[tag=f'{namespace}.fake_particles'] at @s function ./particles/as_captain
     if entity @a[tag=f'{namespace}.fake_particles', limit=1] schedule function ~/ 2t replace
