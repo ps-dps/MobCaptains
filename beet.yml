@@ -18,3 +18,5 @@ pipeline:
   - plugins.credit
 meta:
   credit: [ps-mob]
+  mecha:
+    commands: "https://raw.githubusercontent.com/misode/mcmeta/summary/commands/data.json"

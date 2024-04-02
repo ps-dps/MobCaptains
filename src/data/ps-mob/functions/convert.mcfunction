@@ -12,11 +12,11 @@ function ~/captain:
     if score .exists_for config_score matches 1.. function ./persistence/add with storage ps:mob persistence
 
 function ~/common:
-    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 0.5 multiply
-    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 2 add
-    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.15 multiply
-    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 0.7 multiply
-    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.03 add
+    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 0.5 add_multiplied_total
+    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 2 add_value
+    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.15 add_multiplied_total
+    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 0.7 add_multiplied_total
+    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.03 add_value
     tag @s add f'{namespace}.common'
     team join f'{namespace}.common' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/common"
@@ -26,11 +26,11 @@ function ~/common:
     function ~/../captain
 
 function ~/uncommon:
-    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 0.9 multiply
-    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 4 add
-    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.25 multiply
-    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 1.2 multiply
-    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.1 add
+    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 0.9 add_multiplied_total
+    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 4 add_value
+    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.25 add_multiplied_total
+    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 1.2 add_multiplied_total
+    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.1 add_value
     tag @s add f'{namespace}.uncommon'
     team join f'{namespace}.uncommon' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/uncommon"
@@ -40,11 +40,11 @@ function ~/uncommon:
     function ~/../captain
 
 function ~/rare:
-    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 1.8 multiply
-    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 8 add
-    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.4 multiply
-    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 2.1 multiply
-    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.5 add
+    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 1.8 add_multiplied_total
+    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 8 add_value
+    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.4 add_multiplied_total
+    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 2.1 add_multiplied_total
+    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 0.5 add_value
     tag @s add f'{namespace}.rare'
     team join f'{namespace}.rare' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/rare"
@@ -54,11 +54,11 @@ function ~/rare:
     function ~/../captain
 
 function ~/legendary:
-    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 2.7 multiply
-    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 15 add
-    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.8 multiply
-    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 3 multiply
-    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 1 add
+    attribute @s minecraft:generic.max_health modifier add 15213119-2-2-2-2 f'{namespace}.max_health' 2.7 add_multiplied_total
+    attribute @s minecraft:generic.armor modifier add 15213119-2-2-2-2 f'{namespace}.armor' 15 add_value
+    attribute @s minecraft:generic.movement_speed modifier add 15213119-2-2-2-2 f'{namespace}.movement_speed' 0.8 add_multiplied_total
+    attribute @s minecraft:generic.attack_damage modifier add 15213119-2-2-2-2 f'{namespace}.attack_damage' 3 add_multiplied_total
+    attribute @s minecraft:generic.knockback_resistance modifier add 15213119-2-2-2-2 f'{namespace}.knockback_resistance' 1 add_value
     tag @s add f'{namespace}.legendary'
     team join f'{namespace}.legendary' @s
     data modify entity @s DeathLootTable set value "ps-mob:captain/legendary"
