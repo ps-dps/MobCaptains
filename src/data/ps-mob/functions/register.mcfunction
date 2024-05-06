@@ -6,7 +6,6 @@ function ~/check_mob:
     scoreboard players add .failure namespace 1
     at @s if entity @e[type=marker,limit=1,distance=..24,tag=f'{namespace}.block_area'] return 0
     unless predicate ./should_spawn return 0
-    unless predicate ./per_faliure return 0
 
     function ~/../random with storage ps:mob random
 
@@ -26,17 +25,6 @@ function ~/check_mob:
 
 function ~/random:
     raw f'$execute store result score #random {namespace} run random value 1..$(max)'
-
-predicate ./per_failure {
-    "condition": "minecraft:inverted", "term": {
-        "condition": "minecraft:value_check", "value": {
-            "min": 0,
-            "max": { "type": "minecraft:score", "target": {
-                "type": "minecraft:fixed",
-                "name": ".faliure" },
-                "score": namespace }},
-        "range": 0 }
-    }
 
 predicate ./should_spawn {
     "condition": "minecraft:value_check", "value": {

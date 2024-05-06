@@ -54,17 +54,17 @@ schedule function ./particles/tick_2t 2t replace:
     schedule function ./particles/tick_2t 2t replace
     as @e[type=f'#{namespace}:captains',tag=f'{namespace}.captain'] at @s run function ./particles/as_captain:
         if entity @s[tag=f'{namespace}.common'] run function ./particles/common:
-            circle(1, 15, "dust 1 1 1 1", offset=(0,0.1,0))
-            circle(2, 30, "dust 1 1 1 1", offset=(0,0.1,0))
+            circle(1, 15, "dust{scale:1,color:[1,1,1]}", offset=(0,0.1,0))
+            circle(2, 30, "dust{scale:1,color:[1,1,1]}", offset=(0,0.1,0))
         if entity @s[tag=f'{namespace}.uncommon'] run function ./particles/uncommon:
-            circle(1, 15, "dust 0 1 0 1", offset=(0,0.1,0))
-            circle(2, 30, "dust 0 1 0 1", offset=(0,0.1,0))
+            circle(1, 15, "dust{scale:1,color:[0,1,0]}", offset=(0,0.1,0))
+            circle(2, 30, "dust{scale:1,color:[0,1,0]}", offset=(0,0.1,0))
         if entity @s[tag=f'{namespace}.rare'] run function ./particles/rare:
-            circle(1, 15, "dust 0.7 0 1 1", offset=(0,0.1,0))
-            circle(2, 30, "dust 0.7 0 1 1", offset=(0,0.1,0))
+            circle(1, 15, "dust{scale:1,color:[0.7,0.0,1.0]}", offset=(0,0.1,0))
+            circle(2, 30, "dust{scale:1,color:[0.7,0.0,1.0]}", offset=(0,0.1,0))
         if entity @s[tag=f'{namespace}.legendary'] run function ./particles/legendary:
-            circle(1, 15, "dust 10 10 10 1", offset=(0,0.1,0))
-            circle(2, 30, "dust 10 10 10 1", offset=(0,0.1,0))
+            circle(1, 15, "dust{scale:1,color:[10,10,10]}", offset=(0,0.1,0))
+            circle(2, 30, "dust{scale:1,color:[10,10,10]}", offset=(0,0.1,0))
         anchored eyes positioned ^ ^ ^ run function ./particles/head:
             circle(0.25, 5, "soul_fire_flame", "out", 0.03, movement_offset=(0,2,0), offset=(0,0.8,0))
             circle(0.25, 5, "flame", "out", 0.13, offset=(0,0.8,0))
