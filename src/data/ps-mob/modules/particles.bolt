@@ -2,7 +2,7 @@
 import math
 import numpy
 
-def circle(radius, points, particle="dust 1 0 0 0.5", movement=(0, 0, 0), speed=0, offset=(0, 0, 0), movement_offset=(0, 0, 0), mode="force"):
+def circle(radius, points, particle="dust{scale:0.5,color:[1,0,0]}", movement=(0, 0, 0), speed=0, offset=(0, 0, 0), movement_offset=(0, 0, 0), mode="force"):
     if type(movement) == tuple:
         move = f'{movement[0]} {movement[1]} {movement[2]}'
     else:
