@@ -125,10 +125,5 @@ To adjust the loot tables' weights, just modify the values at `/data/ps-mob/loot
 
 If you want to alter the items themselves, edit the loot tables at `/data/ps-mob/loot_tables/base/<rarity>.json`.
 
-## **Planned Features**
-- Add even **more items** to the loot tables
-- Mob Captains can have different **abilities**, inspired by Atomic Stryker's Infernal Mobs' enchantments
-- Option to see Mob Captains through walls with a **glowing outline**
-
 ---
 [![PuckiSilver on GitHub](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/GitHub.png)](https://github.com/PuckiSilver)[![PuckiSilver on modrinth](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/modrinth.png)](https://modrinth.com/user/PuckiSilver)[![PuckiSilver on PlanetMinecraft](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/PlanetMinecraft.png)](https://planetminecraft.com/m/PuckiSilver)[![PuckiSilver on PayPal](https://raw.githubusercontent.com/PuckiSilver/static-files/main/link_logos/PayPal.png)](https://paypal.me/puckisilver)
