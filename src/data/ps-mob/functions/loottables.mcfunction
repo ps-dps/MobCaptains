@@ -155,7 +155,7 @@ loot_table ./base/rare {
         item('totem_of_undying', 40, [
             name('Lucky Charm', '#81d600'),
             enchantments('protection', 1),
-            {"function": "minecraft:set_attributes", "modifiers": [{"attribute": "minecraft:generic.luck", "name": "ps-mob.lucky_charm", "amount": 1, "operation": "add_value", "id": "42600878-6e02-419a-97b4-695e8e4e3e14", "slot": "mainhand"}]},
+            {"function": "minecraft:set_attributes", "modifiers": [{"attribute": "luck", "name": "ps-mob.lucky_charm", "amount": 1, "operation": "add_value", "id": "42600878-6e02-419a-97b4-695e8e4e3e14", "slot": "mainhand"}]},
         ]),
         item('netherite_hoe', 70, [
             name('Reaper\'s Scythe', '#21000d'),

@@ -2,11 +2,11 @@ namespace = __name__.split(':')[0]
 config_score = f'{namespace}.config'
 
 function ~/unconvert:
-    attribute @s generic.max_health modifier remove 15213119-2-2-2-2
-    attribute @s generic.armor modifier remove 15213119-2-2-2-2
-    attribute @s generic.movement_speed modifier remove 15213119-2-2-2-2
-    attribute @s generic.attack_damage modifier remove 15213119-2-2-2-2
-    attribute @s generic.knockback_resistance modifier remove 15213119-2-2-2-2
+    attribute @s max_health modifier remove ps-mob:captain
+    attribute @s armor modifier remove ps-mob:captain
+    attribute @s movement_speed modifier remove ps-mob:captain
+    attribute @s attack_damage modifier remove ps-mob:captain
+    attribute @s knockback_resistance modifier remove ps-mob:captain
     tag @s remove smithed.entity
     tag @s remove f'{namespace}'
     tag @s remove f'{namespace}.captain'

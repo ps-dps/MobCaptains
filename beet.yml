@@ -1,6 +1,6 @@
 name: MobCaptains
 author: PuckiSilver
-version: v3.3.0
+version: v3.4.0
 output: build
 require:
   - bolt
@@ -11,6 +11,10 @@ data_pack:
     - src
   name: MobCaptains
   description: Rare and strong mobs with custom loot
+  pack_format: 81
+  supported_formats: [48, 81]
+  min_format: 48
+  max_format: 90
 
 pipeline:
   - mecha
@@ -18,5 +22,3 @@ pipeline:
   - plugins.credit
 meta:
   credit: [ps-mob]
-  mecha:
-    commands: "https://raw.githubusercontent.com/misode/mcmeta/summary/commands/data.json"
